@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "coc-clangd": ">=0.27.0",
+    "coc-clang-format-style-options": ">=0.0.5",
+    "coc-cmake": ">=0.2.1",
+    "coc-css": ">=2.0.0",
+    "coc-git": ">=2.5.4",
+    "coc-html": ">=1.8.0",
+    "coc-html-css-support": ">=0.4.0",
+    "coc-json": ">=1.7.0",
+    "coc-htmlhint": ">=0.6.1",
+    "coc-markdownlint": ">=1.26.0",
+    "coc-java": ">=1.5.6",
+    "coc-prettier": ">=9.3.1",
+    "coc-python": ">=1.2.13",
+    "coc-r-lsp": ">=1.2.1",
+    "coc-cssmodules": ">=1.1.1",
+    "coc-snippets": ">=3.1.5",
+    "coc-markdown-preview-enhanced": ">=0.4.4",
+    "coc-sql": ">=0.10.5",
+    "coc-stylua": ">=0.0.11",
+    "coc-tsserver": ">=2.1.0",
+    "coc-stylelint": ">=1.2.0",
+    "coc-lightbulb": ">=0.0.16",
+    "coc-webview": ">=0.11.2",
+    "coc-omnisharp": ">=0.0.28"
+  },
+  "lastUpdate": 1670016920585
+}
