@@ -1,7 +1,6 @@
 #!/usr/bin/sh
 
 sxhkd &
-#xrandr --output LVDS-1 --primary --mode 1366x768 --rotate normal --output HDMI-1 --mode 1920x1080 --rotate normal --right-of LVDS-1 &
 feh --bg-fill ~/.config/nitrogen/chainsaw_makima_pink.png &
 nitrogen ---auto "~/.config/nitrogen/chainsaw_makima_pink.png" &
 picom -b --experimental-backends --animations --animation-window-mass 0.5 --animation-for-open-window zoom --animation-stiffness 350 &
@@ -9,8 +8,17 @@ picom -b --experimental-backends --animations --animation-window-mass 0.5 --anim
 [[ "$1" -eq 0 ]] \
     && find "$BSPWM_DIR/tmp" -type f -exec rm -- {} ';'
 
-bspc monitor HDMI-1 -d 1 2 3 4 5
-#bspc monitor LVDS-1 -d 1 2 3 4 5
+# Checks active monitors and assings bspc workspaces
+laptop_monitor=$(xrandr --query | grep -i 'eDP-1 connected')
+external_monitor=$(xrandr --query | grep -i 'HDMI-1 connected')
+
+if [[ $laptop_monitor = *\ primary* ]]; then
+  bspc monitor eDP-1 -d 1 2 3 4 5
+elif [[ $external_monitor = *\ primary* ]]; then
+  bspc monitor HDMI-1 -d 1 2 3 4 5
+else
+  bspc monitor LVDS-1 -d 1 2 3 4 5
+fi
 
 bspc config border_width         4
 bspc config window_gap           5
