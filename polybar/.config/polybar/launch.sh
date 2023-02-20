@@ -2,11 +2,11 @@
 
 # Checks for active monitors, then called as ${env:MONITOR:}
 if type "xrandr"; then
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload example &
+  for m in $(xrandr --query | grep " primary" | cut -d" " -f1); do
+    MONITOR=$m polybar --reload bar &
   done
 else
-  polybar --reload example &
+  polybar --reload bar &
 fi
 
 # Terminate already running bar instances

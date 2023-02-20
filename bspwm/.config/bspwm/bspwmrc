@@ -1,6 +1,7 @@
 #!/usr/bin/sh
 
 sxhkd &
+xrandr --output HDMI-1 --primary &
 feh --bg-fill ~/.config/nitrogen/chainsaw_makima_pink.png &
 nitrogen ---auto "~/.config/nitrogen/chainsaw_makima_pink.png" &
 picom -b --experimental-backends --animations --animation-window-mass 0.5 --animation-for-open-window zoom --animation-stiffness 350 &
@@ -10,19 +11,22 @@ picom -b --experimental-backends --animations --animation-window-mass 0.5 --anim
 
 # Checks active monitors and assings bspc workspaces
 laptop_monitor=$(xrandr --query | grep -i 'eDP-1 connected')
+laptop_monitor2=$(xrandr --query | grep -i 'LVDS-1 connected')
 external_monitor=$(xrandr --query | grep -i 'HDMI-1 connected')
 
-if [[ $laptop_monitor = *\ primary* ]]; then
-  bspc monitor eDP-1 -d 1 2 3 4 5
-elif [[ $external_monitor = *\ primary* ]]; then
+if [[ $external_monitor = *\ primary* ]]; then
   bspc monitor HDMI-1 -d 1 2 3 4 5
-else
+elif [[ $laptop_monitor = *\ primary* ]]; then
+  bspc monitor eDP-1 -d 1 2 3 4 5
+elif [[ $laptop_monitor2 = *\ primary* ]]; then
   bspc monitor LVDS-1 -d 1 2 3 4 5
+else
+  bspc monitor HDMI-1 -d 1 2 3 4 5
 fi
 
 bspc config border_width         4
 bspc config window_gap           5
-#bspc config normal_border_color "#967259"
+bspc config normal_border_color "#afa1d3"
 bspc config active_border_color "#afa1d3"
 bspc config focused_border_color "#e0e0f7"
 bspc config presel-feedback_color "#afa1d3"
