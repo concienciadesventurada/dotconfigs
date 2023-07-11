@@ -8,11 +8,18 @@ super + Return
 
 # program launcher
 super + a
-	sh ~/.config/rofi/scripts/launcher_t2
+  rofi -no-config -no-lazy-grab -show drun -modi drun -theme ~/.config/polybar/colorblocks/scripts/rofi/launcher.rasi
 
 # file explorer
 super + e
- thunar
+  thunar
+
+# calculator
+super + c
+  gnome-calculator
+
+super + t
+  slack
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -26,45 +33,13 @@ super + b
 super + p
   pavucontrol
 
-# open discord
-super + d
-	flatpak run com.discordapp.Discord
-
-# open steam
+# open keepassxc
 super + q
   keepassxc
-
-# open zoom
-super + z
-	zoom
-
-# open obs
-super + o
-	flatpak run com.obsproject.Studio
-
-#open vim
-super + c
-  sh ~/.config/polybar/polybar-scripts/vim.sh
-
-#open rstudio
-super + r
- rstudio
 
 #flameshot gui
 ctrl + alt + s
 	flameshot
-
-ctrl + alt + d
-  libreoffice
-
-super + alt + c
-  source ~/.bashrc
-
-#night light
-super + n
-	sh ~/.config/redshift/nightlight.sh
-#	sudo redshift-gtk -l 9.93:-84.01 -t 5700:1500
-
 
 #
 # bspwm hotkeys
