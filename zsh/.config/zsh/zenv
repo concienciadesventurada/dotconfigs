@@ -1,0 +1,6 @@
+#export GTK2_RC_FILES="$HOME"/.config/gtk-2.0/gtkrc
+export XDG_DATA_HOME=/home/matias/.local/share
+export XDG_CACHE_HOME=/home/matias/.cache
+export HISTFILE="$HOME/.config/zsh/.zsh_history"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export PATH="$PATH:/opt/flutter/bin:$PATH"

@@ -41,6 +41,22 @@ super + q
 ctrl + alt + s
 	flameshot
 
+XF86AudioMute
+  sh ~/.config/sxhkd/scripts/mute.sh
+
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -1%
+
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ +1%
+
+
+#XF86MonBrightnessDown
+#  Brightness script
+
+#XF86MonBrightnessUp
+#  Brightness script
+
 #
 # bspwm hotkeys
 #
@@ -70,7 +86,7 @@ alt + button3
   bspdragtofloat
 alt + @button3
 	bspdragtofloat stop
-@button3
+@button3n
 	bspdragtofloat stop
 ~button3
   :
@@ -96,8 +112,8 @@ alt + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-#super + {p,b,comma,period}
-#	bspc node -f @{parent,brother,first,second}
+alt + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }c
@@ -130,7 +146,7 @@ alt + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
-super + ctrl + {1-9}
+alt + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
