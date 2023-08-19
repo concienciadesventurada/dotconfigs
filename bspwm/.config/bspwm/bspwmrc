@@ -1,20 +1,32 @@
 #!/usr/bin/sh
+# Function to assign workspaces based on connected monitors
+assign_workspaces() {
+  if xrandr --query | grep -e 'HDMI3 connected'; then
+    nitrogen --auto "~/.config/nitrogen/abstract.jpg"
+    xrandr --output HDMI3 --mode 1920x1080 --right-of eDP1 --pos 2880x0
+    bspc monitor HDMI3 -d 1 2 3 4 5
+    bspc monitor eDP1 -d 6
+  else
+    xrandr --output eDP1 --primary
+    setxkbmap -option altwin:swap_lalt_lwin
+    bspc monitor eDP1 -d 1 2 3 4 5
+  fi
+}
+
 sxhkd &
 setxkbmap -option ctrl:swapcaps &
-xrandr --output HDMI1 --primary --mode 1920x1080 --rotate normal --right-of LVDS1 &
 feh --bg ~/.config/nitrogen/abstract.jpg &
+xrandr --output eDP1 --pos 0x0 &
 sh ~/.config/bspwm/.fehbg &
-nitrogen --auto "~/.config/nitrogen/abstract.jpg" &
 picom -b --config ~/.config/picom/picom.conf &
 ~/.config/polybar/launch.sh --colorblocks &
 [[ "$1" -eq 0 ]] \
-    && find "$BSPWM_DIR/tmp" -type f -exec rm -- {} ';'
+  && find "$BSPWM_DIR/tmp" -type f -exec rm -- {} ';'
 
-bspc monitor HDMI1 -d 1 2 3 4 5
-bspc monitor LVDS1 -d 6
+assign_workspaces
 
-bspc config border_width         4
-bspc config window_gap           6
+bspc config border_width         1
+bspc config window_gap           1
 bspc config normal_border_color "#454545"
 bspc config active_border_color "#454545"
 bspc config focused_border_color "#19A7CE"
@@ -24,11 +36,11 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config focus_follows_pointer true
 
-bspc rule -a zoom monitor=LVDS1 state=tiled
-bspc rule -a Pavucontrol monitor=HDMI1 state=floating rectangle=500x400+2774+29
-bspc rule -a Rofi monitor=HDMI1
-bspc rule -a flameshot monitor=HDMI1
-bspc rule -a Slack desktop='^6' monitor=HDMI1
-bspc rule -a KeePassXC desktop='^5' monitor=HDMI1
+bspc rule -a zoom monitor=eDP1 state=tiled
+bspc rule -a Pavucontrol monitor=HDMI3 state=floating rectangle=500x400+2774+29
+bspc rule -a Rofi monitor=HDMI3
+bspc rule -a flameshot monitor=HDMI3
+bspc rule -a Slack desktop='^6' monitor=HDMI3
+bspc rule -a KeePassXC desktop='^5' monitor=HDMI3
 bspc rule -a Screenkey state=floating
-bspc rule -a Gnome-calculator state=floating
+bspc rule -a gnome-calculator state=floating
