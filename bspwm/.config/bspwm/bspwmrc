@@ -1,22 +1,23 @@
 #!/usr/bin/sh
 # Function to assign workspaces based on connected monitors
 assign_workspaces() {
-  if xrandr --query | grep -e 'HDMI3 connected'; then
+  if xrandr --query | grep -e 'HDMI-3 connected'; then
     nitrogen --auto "~/.config/nitrogen/abstract.jpg"
-    xrandr --output HDMI3 --mode 1920x1080 --right-of eDP1 --pos 2880x0
-    bspc monitor HDMI3 -d 1 2 3 4 5
-    bspc monitor eDP1 -d 6
+    xrandr --output HDMI-3 --mode 1920x1080 --right-of eDP-1 --pos 2880x0
+    bspc monitor HDMI-3 -d 1 2 3 4 5
+    bspc monitor eDP-1 -d 6
   else
-    xrandr --output eDP1 --primary
     setxkbmap -option altwin:swap_lalt_lwin
-    bspc monitor eDP1 -d 1 2 3 4 5
+    xrandr --output eDP-1 --primary
+    bspc monitor eDP-1 -d 1 2 3 4 5
   fi
 }
 
 sxhkd &
 setxkbmap -option ctrl:swapcaps &
+localectl --no-convert set-x11-keymap us,es pc104 grp:win_space_toggle &
 feh --bg ~/.config/nitrogen/abstract.jpg &
-xrandr --output eDP1 --pos 0x0 &
+xrandr --output eDP-1 --pos 0x0 &
 sh ~/.config/bspwm/.fehbg &
 picom -b --config ~/.config/picom/picom.conf &
 ~/.config/polybar/launch.sh --colorblocks &
@@ -36,11 +37,11 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config focus_follows_pointer true
 
-bspc rule -a zoom monitor=eDP1 state=tiled
-bspc rule -a Pavucontrol monitor=HDMI3 state=floating rectangle=500x400+2774+29
-bspc rule -a Rofi monitor=HDMI3
-bspc rule -a flameshot monitor=HDMI3
-bspc rule -a Slack desktop='^6' monitor=HDMI3
-bspc rule -a KeePassXC desktop='^5' monitor=HDMI3
+bspc rule -a zoom monitor=eDP-1 state=tiled
+bspc rule -a Pavucontrol monitor=HDMI-3 state=floating rectangle=500x400+2774+29
+bspc rule -a Rofi monitor=HDMI-3
+bspc rule -a flameshot monitor=HDMI-3
+bspc rule -a Slack desktop='^6' monitor=HDMI-3
+bspc rule -a KeePassXC desktop='^5' monitor=HDMI-3
 bspc rule -a Screenkey state=floating
 bspc rule -a gnome-calculator state=floating

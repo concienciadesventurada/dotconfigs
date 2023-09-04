@@ -12,7 +12,7 @@ super + a
 
 # file explorer
 super + e
-  thunar
+  nautilus
 
 # calculator
 super + c
