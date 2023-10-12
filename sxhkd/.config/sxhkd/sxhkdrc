@@ -5,6 +5,11 @@
 # terminal emulator
 super + Return
 	kitty
+#
+# terminal emulator
+super + alt + Return
+  gnome-terminal
+
 
 # program launcher
 super + a
